@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>berkobirhub.com | Ban İtiraz</title>
+<meta name="description" content="berkobir Kick kanalında ban mı aldın? berkobirhub.com üzerinden itiraz et." />
+<link rel="canonical" href="https://berkobirhub.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #53FC18;
+    --green-dark: #3dd100;
+    --bg: #0d0d0d;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --text-dim: #555;
+    --danger: #ff4444;
+    --warning: #f5a623;
+    --success: #53FC18;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-logo-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo-text span {
+    color: var(--green);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+
+  .nav-link:hover { color: var(--text); background: var(--bg3); }
+  .nav-link.active { color: var(--bg); background: var(--green); }
+
+  /* MAIN */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* HERO */
+  .hero {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .hero h1 span { color: var(--green); }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .stat {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .stat-value.danger { color: var(--danger); }
+  .stat-value.warning { color: var(--warning); }
+  .stat-value.success { color: var(--success); }
+
+  /* SECTION */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  /* BAN CARDS */
+  .ban-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 10px;
+    transition: border-color 0.15s;
+  }
+
+  .ban-card:hover { border-color: var(--border-hover); }
+
+  .ban-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .ban-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d0d0d;
+    flex-shrink: 0;
+  }
+
+  .avatar.gray { background: var(--bg3); color: var(--text-muted); }
+
+  .ban-username {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .ban-date {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .badge-danger { background: rgba(255,68,68,0.12); color: #ff6b6b; border: 1px solid rgba(255,68,68,0.2); }
+  .badge-warning { background: rgba(245,166,35,0.12); color: #f5a623; border: 1px solid rgba(245,166,35,0.2); }
+  .badge-success { background: rgba(83,252,24,0.1); color: var(--green); border: 1px solid rgba(83,252,24,0.2); }
+
+  .ban-reason {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--danger);
+    margin-bottom: 12px;
+  }
+
+  .ban-reason.warning-border { border-color: var(--warning); }
+
+  .ban-card-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* BUTTONS */
+  .btn {
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid var(--border-hover);
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.15s;
+  }
+
+  .btn:hover { background: var(--bg3); color: var(--text); }
+
+  .btn-green {
+    background: var(--green);
+    color: #0d0d0d;
+    border-color: var(--green);
+  }
+
+  .btn-green:hover { background: var(--green-dark); border-color: var(--green-dark); color: #0d0d0d; }
+
+  /* FORM */
+  .form-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .form-row { margin-bottom: 16px; }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+  }
+
+  .form-control:focus { border-color: var(--green); }
+  .form-control::placeholder { color: var(--text-dim); }
+
+  textarea.form-control { min-height: 100px; resize: vertical; }
+
+  select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  select.form-control option { background: #1e1e1e; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* APPEAL LIST */
+  .appeal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .appeal-item:last-child { border-bottom: none; }
+
+  .appeal-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .appeal-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .appeal-time {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .appeal-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .appeal-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--bg2);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: var(--green);
+    font-weight: 500;
+    transition: transform 0.3s ease;
+    z-index: 999;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 2px; }
+    .nav-link { padding: 6px 10px; font-size: 12px; }
+    main { padding: 2rem 1rem 3rem; }
+    .hero h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 4L12 12L4 20" stroke="#0d0d0d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 4L21 12L13 20" stroke="#0d0d0d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">berkobir<span>Hub</span></span>
+  </a>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showSection('overview', this)">Genel</button>
+    <button class="nav-link" onclick="showSection('appeal', this)">İtiraz Et</button>
+    <button class="nav-link" onclick="showSection('history', this)">Geçmiş</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Kick Ban İtiraz Paneli</div>
+    <h1>berkobir kanalında<br />ban mı aldın? <span>İtiraz et.</span></h1>
+    <p>Haksız yere ban aldığını düşünüyorsan formu doldur, moderatörler en geç 48 saat içinde sana geri döner.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Toplam İtiraz</div>
+      <div class="stat-value">142</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">İncelemede</div>
+      <div class="stat-value warning">38</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Kabul</div>
+      <div class="stat-value success">74</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Reddedilen</div>
+      <div class="stat-value danger">30</div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="section-overview" class="section active">
+    <div class="section-label">Son Banlananlar</div>
+
+    <div class="ban-card">
+      <div class="ban-card-header">
+        <div class="ban-user">
+          <div class="avatar">KO</div>
+          <div>
+            <div class="ban-username">kullanici_ornek</div>
+            <div class="ban-date">14 Haziran 2026</div>
+          </div>
+        </div>
+        <span class="badge badge-danger">Kalıcı Ban</span>
+      </div>
+      <div class="ban-reason">Küfür ve uygunsuz davranış — Topluluk kuralları ihlali</div>
+      <div class="ban-card-footer">
+        <button class="btn" onclick="showSection('appeal', document.querySelectorAll('.nav-link')[1])">İtiraz Et →</button>
+      </div>
+    </div>
+
+    <div class="ban-card">
+      <div class="ban-card-header">
+        <div class="ban-user">
+          <div class="avatar gray">AX</div>
+          <div>
+            <div class="ban-username">axenox_99</div>
+            <div class="ban-date">10 Haziran 2026</div>
+          </div>
+        </div>
+        <span class="badge badge-warning">7 Günlük Ban</span>
+      </div>
+      <div class="ban-reason warning-border">Spam mesajlaşma</div>
+      <div class="ban-card-footer">
+        <button class="btn" onclick="showSection('appeal', document.querySelectorAll('.nav-link')[1])">İtiraz Et →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPEAL FORM -->
+  <div id="section-appeal" class="section">
+    <div class="section-label">İtiraz Formu</div>
+    <div class="form-card">
+      <div class="form-row">
+        <label class="form-label">Kick kullanıcı adın</label>
+        <input type="text" class="form-control" placeholder="kullaniciadin" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Ban türü</label>
+        <select class="form-control">
+          <option>Kalıcı Ban</option>
+          <option>Geçici Ban</option>
+          <option>Timeout</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Banlanma tarihi</label>
+        <input type="date" class="form-control" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Neden ban almadığını düşünüyorsun?</label>
+        <textarea class="form-control" placeholder="Durumu açıkla..."></textarea>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Eklemek istediğin bir şey var mı? <span style="color:var(--text-dim)">(isteğe bağlı)</span></label>
+        <textarea class="form-control" style="min-height: 70px;" placeholder="Ek bilgi..."></textarea>
+      </div>
+      <button class="btn btn-green submit-btn" onclick="submitForm()">İtirazı Gönder</button>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="section-history" class="section">
+    <div class="section-label">İtiraz Geçmişi</div>
+    <div class="ban-card" style="padding: 0 1.25rem;">
+      <div class="appeal-item">
+        <div class="appeal-icon">✓</div>
+        <div>
+          <div class="appeal-meta">
+            <span class="appeal-name">mertozturk_</span>
+            <span class="badge badge-success">Kabul</span>
+            <span class="appeal-time">3 gün önce</span>
+          </div>
+          <div class="appeal-text">Yanlış anlaşılma sonucu ban alındığı tespit edildi, ban kaldırıldı.</div>
+        </div>
+      </div>
+      <div class="appeal-item">
+        <div class="appeal-icon">⏳</div>
+        <div>
+          <div class="appeal-meta">
+            <span class="appeal-name">gamer_tr42</span>
+            <span class="badge badge-warning">İncelemede</span>
+            <span class="appeal-time">1 gün önce</span>
+          </div>
+          <div class="appeal-text">İtiraz moderatörler tarafından değerlendiriliyor.</div>
+        </div>
+      </div>
+      <div class="appeal-item">
+        <div class="appeal-icon" style="color:var(--danger)">✕</div>
+        <div>
+          <div class="appeal-meta">
+            <span class="appeal-name">flood_king</span>
+            <span class="badge badge-danger">Reddedildi</span>
+            <span class="appeal-time">5 gün önce</span>
+          </div>
+          <div class="appeal-text">Birden fazla kural ihlali tespit edildi, ban kalıcı olarak devam ediyor.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast">✓ İtirazın gönderildi! 48 saat içinde geri döneceğiz.</div>
+
+<script>
+function showSection(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function submitForm() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+</script>
+
+</body>
+</html>
